@@ -13,8 +13,10 @@ void initialize()
 {
 	__int64 task_scheduler = get_task_scheduler();
 
-	double framerate = 1 / *reinterpret_cast<double*>(task_scheduler + 0x158);
-	print(0, "%f", framerate);
+	double framerate_value = 300;
+
+	float framerate = 1 / *reinterpret_cast<double*>(task_scheduler + 0x158);
+	*reinterpret_cast<double*>(task_scheduler + 0x158) = 1 / framerate_value;
 }
 
 __int64 APIENTRY DllMain(HMODULE module, uint32_t reason, LPVOID)
